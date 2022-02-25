@@ -7,15 +7,14 @@ const app = () => {
     //Sounds
     const sounds = document.querySelectorAll(".sound-picker button");
     //Time Display
-    const timeDisplay = document.querySelector("time-display");
+    const timeDisplay = document.querySelector(".time-display");
     // Get the lenght of the outline
     const outlineLenght = outline.getTotalLenght();
-    // console.log(outlineLenght);
     //Duration
-    let fakeDuration = 600;
+    let fakeDuration = 1200;
 
-    outline.style.strokeDasharray = outlineLenght;
-    outline.style.strokeDashoffset = outlineLenght;
+        outline.style.strokeDasharray = 100;
+        // outline.style.strokeDashoffset = outlineLenght;
 
     //Play Sound     
     play.addEventListener('click', () => {
@@ -23,3 +22,5 @@ const app = () => {
      });
     
 };
+
+app();

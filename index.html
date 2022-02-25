@@ -4,8 +4,98 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>M E D I T A T E</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.time-select,
+.sound-picker,
+.player-container {
+  height: 80%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.player-container {
+  position: relative;
+}
+
+.player-container svg {
+  position: absolute;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.time-display {
+  position: absolute;
+  bottom: 10%;
+  color: white;
+  font-size: 50px;
+}
+
+video {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  z-index: -10;
+}
+
+.time-select button,
+.sound-picker button {
+  color: white;
+  width: 30%;
+  height: 10%;
+  background: none;
+  border: 2px solid white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 20px;
+  transition: all 0.5s ease;
+}
+.time-select button:hover {
+  color: black;
+  background: white;
+}
+
+.sound-picker button {
+  border: none;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  padding: 30px;
+}
+
+.sound-picker button:nth-child(1) {
+  background: #497281;
+}
+
+.sound-picker button:nth-child(2) {
+  background: #a14f49;
+}
+
+.sound-picker button img {
+  height: 100%;
+}
+    </style>
 </head>
 <body>
     <div class="app">
@@ -32,7 +122,8 @@
             height="453"
             viewBox="0 0 453 453"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg">
+            xmlns="http://www.w3.org/2000/svg"
+            >
                 <circle
                 cx="226.5"
                 cy="226.5"
@@ -61,11 +152,39 @@
         </div>
                 
         <div class="sound-picker">
-            <button data-sound="./sounds/rain.mp3" data-video="./video/rain.mp3"><img src="./svg/rain.svg" alt="rain"></button>
-            <button data-sound="/.sounds/beach.mp3" data-video="./video/beach.mp3"> <img src="./svg/beach.svg" alt="beach"></button>
-
+            <button data-sound="./sounds/rain.mp3" data-video="./video/rain.mp4"><img src="./svg/rain.svg" alt="rain"></button>
+            <button data-sound="/.sounds/beach.mp3" data-video="./video/beach.mp4"> <img src="./svg/beach.svg" alt="beach"></button>
         </div>
     </div>
-<script src="./app.js"></script>
 </body>
+
+<script>
+    const app = () => {
+    const song = document.querySelector(".song");
+    const play = document.querySelector(".play");
+    const outline = document.querySelector(".moving-outline circle");
+    const video = document.querySelector(".vid-container video");
+
+    //Sounds
+    const sounds = document.querySelectorAll(".sound-picker button");
+    //Time Display
+    const timeDisplay = document.querySelector(".time-display");
+    // Get the lenght of the outline
+    const outlineLenght = outline.getTotalLenght();
+    //Duration
+    let fakeDuration = 1200;
+
+        outline.style.strokeDasharray = 100;
+        // outline.style.strokeDashoffset = outlineLenght;
+
+    //Play Sound     
+    play.addEventListener('click', () => {
+        song.play();
+     });
+    
+};
+
+app();
+
+</script>
 </html>
